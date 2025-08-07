@@ -40,7 +40,7 @@ Then move inside the cloned folder.
 3. **Set up environment variables**
    Copy the content of the file `.env.example` in the docker directory, 
    create a file named `.env` and fill edit the variables with yours.
-   
+
    This is an example:
    ```env
    # Server Configuration
@@ -185,7 +185,11 @@ If we need to destroy all the resources created we can do so with this command
    ```
 
 
+## Possible improvements
+To scale the tools in a production environment a couple of adjustments to the infrastructure
+can be taken into consideration:
 
-
-
-
+- Implement user authentication by managing identities with an identity provider (Keycloak, Cognito, etc.)
+- In a scenario where the service is not constantly loaded it can be more cost-efficient to move the underlying computing power
+on serverless services like Fargate, or Lambda functions with api gateway.
+- Migrate the database on a RDS managed service that takes care of availability, backups, etc. 
