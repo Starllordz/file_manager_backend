@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "2045a570-28c0-4e2d-9e3d-ac4c7a99bde8",
+		"name": "Pack Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15734712"
+	},
+	"item": [
+		{
+			"name": "healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{endpoint}}/api/v1/healthcheck",
+					"protocol": "http",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{endpoint}}/api/v1/files/stats",
+					"protocol": "http",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"files",
+						"stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getFile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{endpoint}}/api/v1/files/:fileId",
+					"protocol": "http",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"files",
+						":fileId"
+					],
+					"variable": [
+						{
+							"key": "fileId",
+							"value": "suca"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listFiles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{endpoint}}/api/v1/files?limit=100&offset=0",
+					"protocol": "http",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"files"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "100"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "uploadFile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/stefano/Downloads/1"
+						},
+						{
+							"key": "title",
+							"value": "Documento1",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Lorem ipsum",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "Cat1",
+							"type": "text"
+						},
+						{
+							"key": "language",
+							"value": "english",
+							"type": "text"
+						},
+						{
+							"key": "provider",
+							"value": "Prov1",
+							"type": "text"
+						},
+						{
+							"key": "roles",
+							"value": "[\"user\", \"admin\"]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{endpoint}}/api/v1/files",
+					"protocol": "http",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"files"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
