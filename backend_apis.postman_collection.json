@@ -1,7 +1,8 @@
 {
 	"info": {
 		"_postman_id": "2045a570-28c0-4e2d-9e3d-ac4c7a99bde8",
-		"name": "Pack Project",
+		"name": "Pack Project APIs",
+		"description": "An HTTP server to manage files.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "15734712"
 	},
@@ -22,7 +23,8 @@
 						"v1",
 						"healthcheck"
 					]
-				}
+				},
+				"description": "A healthcheck API to see if everything is up and running"
 			},
 			"response": []
 		},
@@ -43,7 +45,8 @@
 						"files",
 						"stats"
 					]
-				}
+				},
+				"description": "This API gets aggregated metrics on the files.\n\nIt returns the number of uploaded files, the number of files for each category and the number of files for each language."
 			},
 			"response": []
 		},
@@ -67,10 +70,11 @@
 					"variable": [
 						{
 							"key": "fileId",
-							"value": "your-file-id"
+							"value": "8e9a7c64-45be-4371-ba54-69fd7b6fb41d"
 						}
 					]
-				}
+				},
+				"description": "This API retrieves a file by its UUID"
 			},
 			"response": []
 		},
@@ -100,7 +104,8 @@
 							"value": "0"
 						}
 					]
-				}
+				},
+				"description": "This API lists all saved files"
 			},
 			"response": []
 		},
@@ -160,7 +165,8 @@
 						"v1",
 						"files"
 					]
-				}
+				},
+				"description": "This API uploads a new file in the server"
 			},
 			"response": []
 		}
