@@ -64,6 +64,7 @@ Then move inside the cloned folder.
    # CORS Configuration
    CORS_ORIGIN=*
    ```
+Note that the aws credentials are used to operate with an S3 bucket, so the corresponding user should have permissions to do that.
 
 4. **Start the development server**
    ```bash
