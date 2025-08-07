@@ -132,7 +132,7 @@ resource "aws_instance" "main" {
     -e AWS_REGION='eu-central-1' \
     -e CORS_ORIGIN='*' \
     -e MAX_FILE_SIZE='100' \
-    ghcr.io/starllordz/backend_api:main-aa0c2db
+    ghcr.io/starllordz/file_manager_backend:main-0ff5f77
 
     EOF
 

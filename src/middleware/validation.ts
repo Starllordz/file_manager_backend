@@ -65,7 +65,7 @@ export const validateListFiles = validateRequest({ query: listFilesSchema });
 
 //Get file validation schema
 export const getFileSchema = z.object({
-  id: z.string().min(1, 'ID is required'),
+  id: z.string().uuid('Invalid UUID format'),
 });
 
 export const validateGetFile = validateRequest({ params: getFileSchema });
