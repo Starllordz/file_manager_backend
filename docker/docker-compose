@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Jump to "self" folder
+cd "$(dirname "$0")"
+
+echo "Running docker-compose $@"
+docker compose --env-file .env "$@"

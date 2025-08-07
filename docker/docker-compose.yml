@@ -1,0 +1,50 @@
+services:
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME?error}
+      POSTGRES_USER: ${DATABASE_USER?error}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD?error}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend_network
+
+  backend:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile_dev
+    container_name: backend_api
+    environment:
+      NODE_ENV: development
+      PORT: ${PORT?error}
+      HOST: ${HOST}
+      DATABASE_HOST: ${DATABASE_HOST?error}
+      DATABASE_PORT: 5432
+      DATABASE_USER: ${DATABASE_USER?error}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD?error}
+      DATABASE_NAME: ${DATABASE_NAME?error}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID?error}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY?error}
+      AWS_BUCKET_NAME: ${AWS_BUCKET_NAME?error}
+      CORS_ORIGIN: ${CORS_ORIGIN}
+      MAX_FILE_SIZE: ${MAX_FILE_SIZE}
+    volumes:
+      - ../src:/app/src
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - backend_network
+
+volumes:
+  postgres_data:
+
+networks:
+  backend_network:
+    driver: bridge

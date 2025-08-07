@@ -1,0 +1,54 @@
+FROM node:20
+
+# Set working directory
+WORKDIR /app
+
+ARG NODE_ENV=production
+ARG PORT=3000
+ARG HOST
+ARG DATABASE_HOST
+ARG DATABASE_PORT
+ARG DATABASE_USER
+ARG DATABASE_PASSWORD
+ARG DATABASE_NAME
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
+ARG AWS_BUCKET_NAME
+ARG AWS_REGION
+ARG CORS_ORIGIN
+ARG MAX_FILE_SIZE
+
+ENV NODE_ENV=$NODE_ENV
+ENV PORT=$PORT
+ENV HOST=$HOST
+ENV DATABASE_HOST=$DATABASE_HOST
+ENV DATABASE_PORT=$DATABASE_PORT
+ENV DATABASE_USER=$DATABASE_USER
+ENV DATABASE_PASSWORD=$DATABASE_PASSWORD
+ENV DATABASE_NAME=$DATABASE_NAME
+ENV AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+ENV AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+ENV AWS_BUCKET_NAME=$AWS_BUCKET_NAME
+ENV AWS_REGION=$AWS_REGION
+ENV CORS_ORIGIN=$CORS_ORIGIN
+ENV MAX_FILE_SIZE=$MAX_FILE_SIZE
+
+COPY docker/wait-for-it.sh ./wait-for-it.sh
+RUN chmod +x ./wait-for-it.sh
+
+# Copy package files
+COPY package*.json ./
+
+# Install all dependencies (including dev dependencies for build)
+RUN npm ci --include=dev
+
+# Copy source code
+COPY . .
+
+# Build the application
+RUN npm run build
+
+# Expose port
+EXPOSE 3000
+
+CMD ["./wait-for-it.sh", "postgres:5432", "--", "sh", "-c", "npm run migrate && npm start"]
