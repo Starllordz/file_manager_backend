@@ -38,7 +38,10 @@ Then move inside the cloned folder.
    ```
 
 3. **Set up environment variables**
-   Copy then `.env.example` file in the docker directory and fill edit the variables with yours:
+   Copy the content of the file `.env.example` in the docker directory, 
+   create a file named `.env` and fill edit the variables with yours.
+   
+   This is an example:
    ```env
    # Server Configuration
    PORT=3000
@@ -46,10 +49,10 @@ Then move inside the cloned folder.
    NODE_ENV=development
 
    # Database Configuration
-   DATABASE_HOST=localhost
+   DATABASE_HOST=postgres
    DATABASE_PORT=5432
-   DATABASE_USER=postgres
-   DATABASE_PASSWORD=postgres
+   DATABASE_USER=backend_user
+   DATABASE_PASSWORD=password123
    DATABASE_NAME=backend_db
 
    # AWS S3 Configuration
@@ -64,6 +67,7 @@ Then move inside the cloned folder.
    # CORS Configuration
    CORS_ORIGIN=*
    ```
+Remember to insert the AWS credentials and the bucket name.    
 Note that the aws credentials are used to operate with an S3 bucket, so the corresponding user should have permissions to do that.
 
 4. **Start the development server**
